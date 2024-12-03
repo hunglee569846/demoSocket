@@ -44,7 +44,7 @@ const server = net.createServer((socket) => {
     // Gửi một tin nhắn mỗi 5 giây
     const interval = setInterval(sendMessages, 5000);
 
-    // Xử lý khi client ngắt kết nối
+    // Xử lý khi client ngắt kết nối client
     socket.on('end', () => {
         console.log('Client disconnected');
         clearInterval(interval);
