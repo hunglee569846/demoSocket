@@ -6,9 +6,18 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+const router = express.Router()
 
+// app.use('/socket',router.get('*', (req,res)=>{
+//     const file = app.use(express.static(path.join(__dirname, 'public')))
+//     console.log('file: ', file)
+//     res.send(file.route())
+// }))
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.get('/socket', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 // Sử dụng thư mục public để phục vụ các tệp tĩnh
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 io.on('connection', (socket) => {
     console.log('A user connected');
