@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="openCamera()">Mở camera</button>
+<br><br>
+<video id="video" autoplay playsinline></video>
+
+<script>
+async function openCamera() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" } // camera sau
+    });
+    document.getElementById("video").srcObject = stream;
+  } catch (e) {
+    alert("Không mở được camera: " + e.message);
+  }
+}
+</script>
+
+</body>
+</html>
